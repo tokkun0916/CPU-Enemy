@@ -28,8 +28,10 @@ namespace DamageArea
             GameObject area = Instantiate(prefab, Pos, transform.rotation);
             area.transform.localScale = Vector3.one * data.Size;
 
-            area.GetComponent<DamageAreaMotion>()?.SetData(data);
-            area.GetComponent<AttackBase>()?.SetData(data);
+            if(area.TryGetComponent(out DamageAreaMotion motion))
+                motion.SetData(data);
+            if(area.TryGetComponent(out AttackBase attack))
+                attack.SetData(data);
         }
 
         #endregion
