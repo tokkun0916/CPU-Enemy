@@ -1,5 +1,3 @@
-using UnityEngine;
-
 public class DamageAreaTimeData
 {
     public float _SpawnTime = 0.3f;   // 出現モーションにかかる時間
