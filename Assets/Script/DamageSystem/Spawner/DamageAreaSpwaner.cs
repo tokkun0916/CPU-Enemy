@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class DamageAreaController : MonoBehaviour
+public class DamageAreaSpwaner : MonoBehaviour
 {
     // ファクトリーの生成
 

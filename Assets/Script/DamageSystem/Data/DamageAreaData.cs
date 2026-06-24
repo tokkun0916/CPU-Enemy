@@ -1,4 +1,4 @@
-public class AttackData
+public class DamageAreaData
 {
     public DamageAreaShapeBaseData _ShapeData;
     public DamageAreaAttackData _AttackData;

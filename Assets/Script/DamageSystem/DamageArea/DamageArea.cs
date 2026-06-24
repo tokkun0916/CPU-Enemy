@@ -6,10 +6,10 @@ public abstract class DamageArea
 public abstract class DamageArea<TShape> : DamageArea
     where TShape : DamageAreaShapeBaseData
 {
-    protected AttackData _AttackData;
+    protected DamageAreaData _AttackData;
     protected TShape _ShapeData;
 
-    public virtual void Initialize(AttackData attackData)
+    public virtual void Initialize(DamageAreaData attackData)
     {
         _AttackData = attackData;
         _ShapeData = (TShape)attackData._ShapeData;
