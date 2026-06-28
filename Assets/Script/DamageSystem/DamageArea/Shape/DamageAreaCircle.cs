@@ -9,16 +9,16 @@ public class DamageAreaCircle : DamageArea<DamageAreaCircleData>
         base.Initialize(damageAreaData);
     }
 
-    public override async UniTask Execute()
+    public override async UniTask Run()
     {
         ChangeState(DamageAreaState.Spawn);
-        await UniTask.Delay((int)(_DamageAreaData._TimeData._SpawnTime * 1000));
+        await UniTask.Delay((int)(DamageAreaData.TimeData.FadeInTime * 1000));
 
         ChangeState(DamageAreaState.Attack);
-        await UniTask.Delay((int)(_DamageAreaData._TimeData._AttackTime * 1000));
+        await UniTask.Delay((int)(DamageAreaData.TimeData.AttackTime * 1000));
 
         ChangeState(DamageAreaState.FadeOut);
-        await UniTask.Delay((int)(_DamageAreaData._TimeData._FadeOutTime * 1000));
+        await UniTask.Delay((int)(DamageAreaData.TimeData.FadeOutTime * 1000));
 
         ChangeState(DamageAreaState.Released);
     }

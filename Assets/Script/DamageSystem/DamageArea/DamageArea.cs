@@ -1,18 +1,18 @@
 using Cysharp.Threading.Tasks;
 using System;
 using UniRx;
+using UnityEngine;
 
-public abstract class DamageArea
+public abstract class DamageArea : MonoBehaviour
 {
+    public DamageAreaData DamageAreaData { get; protected set; }
     public abstract IObservable<DamageAreaStateChanged> OnStateChanged { get; }
-    public abstract UniTask Execute();
 }
 
 public abstract class DamageArea<TShape> : DamageArea
     where TShape : DamageAreaShapeBaseData
 {
-    protected DamageAreaData _DamageAreaData;
-    protected TShape _ShapeData;
+    protected TShape ShapeData;
 
     private readonly Subject<DamageAreaStateChanged> _stateChanged = new();
 
@@ -20,16 +20,16 @@ public abstract class DamageArea<TShape> : DamageArea
 
     public virtual void Initialize(DamageAreaData damageAreaData)
     {
-        _DamageAreaData = damageAreaData;
+        DamageAreaData = damageAreaData;
 
-        if (damageAreaData._ShapeData is not TShape shapeData)
+        if (damageAreaData.ShapeData is not TShape shapeData)
         {
             throw new ArgumentException(
                 $"Invalid shape data type. " +
                 $"Expected {typeof(TShape).Name}, " +
-                $"but got {damageAreaData._ShapeData?.GetType().Name ?? "null"}.");
+                $"but got {damageAreaData.ShapeData?.GetType().Name ?? "null"}.");
         }
-        _ShapeData = shapeData;
+        ShapeData = shapeData;
     }
 
     protected void ChangeState(DamageAreaState state)
@@ -37,11 +37,8 @@ public abstract class DamageArea<TShape> : DamageArea
         _stateChanged.OnNext(
             new DamageAreaStateChanged(
                 state,
-                _DamageAreaData));
+                DamageAreaData));
     }
 
-    public override UniTask Execute()
-    {
-        throw new NotImplementedException();
-    }
+    public abstract UniTask Run();
 }

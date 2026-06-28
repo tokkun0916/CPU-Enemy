@@ -6,17 +6,21 @@ public class HogeUseDamageArea : MonoBehaviour
     void Start()
     {
         DamageAreaData areaData = new DamageAreaData();
-        areaData._ShapeData = new DamageAreaCircleData();
-        areaData._TimeData = new DamageAreaTimeData
+        areaData.ShapeData = new DamageAreaCircleData();
+        areaData.TimeData = new DamageAreaTimeData
         {
-            _SpawnTime = 1.0f,
-            _AttackTime = 2.0f,
-            _FadeOutTime = 1.5f
+            FadeInTime = 1.0f,
+            AttackTime = 2.0f,
+            FadeOutTime = 1.5f
         };
 
-        DamageAreaCircle damageAreaCircle = new DamageAreaCircle();
+        // UniRxのSubjectを使ってDamageAreaの状態変化を監視し、状態に応じて処理を行う
+        DamageAreaCircle damageAreaCircle = GetComponent<DamageAreaCircle>();
         damageAreaCircle.Initialize(areaData);
 
-        UniTask executeTask = damageAreaCircle.Execute();
+        DamageAreaCircleView circleView = GetComponent<DamageAreaCircleView>();
+        circleView.Initialize(damageAreaCircle);
+
+        UniTask executeTask = damageAreaCircle.Run();
     }
 }

@@ -1,6 +1,6 @@
 public class DamageAreaData
 {
-    public DamageAreaShapeBaseData _ShapeData;
-    public DamageAreaAttackData _AttackData;
-    public DamageAreaTimeData _TimeData;
+    public DamageAreaShapeBaseData ShapeData;
+    public DamageAreaAttackData AttackData;
+    public DamageAreaTimeData TimeData;
 }
