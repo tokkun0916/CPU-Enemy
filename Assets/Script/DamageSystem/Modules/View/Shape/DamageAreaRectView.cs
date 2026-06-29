@@ -4,11 +4,12 @@ using UniRx;
 
 public class DamageAreaRectView : DamageAreaView
 {
+    private DamageAreaRectData _rectData;
     public override void Initialize(DamageAreaRunner areaRunner)
     {
         Runner = areaRunner;
         TimeData = areaRunner.DamageAreaData.TimeData;
-        ShapeData = areaRunner.DamageAreaData.ShapeData;
+        _rectData = (DamageAreaRectData)areaRunner.DamageAreaData.ShapeData;
 
         Runner.OnStateChanged
             .Subscribe(state =>
@@ -17,19 +18,18 @@ public class DamageAreaRectView : DamageAreaView
                 {
                     case DamageAreaState.FadeIn:
                         {
-                            transform.localScale = Vector3.zero;
+                            transform.localPosition = _rectData.StartingPos;
 
-                            // ここに矩形のサイズを設定する処理を追加する
-
+                            transform.localScale = new Vector3(0, _rectData.Size.y, _rectData.Size.z);
                             transform
-                                .DOScale(Vector3.one, TimeData.FadeInTime)
+                                .DOScaleX(_rectData.Size.x, TimeData.FadeInTime)
                                 .SetEase(Ease.OutSine);
                         }
                         break;
                     case DamageAreaState.FadeOut:
                         {
                             transform
-                                .DOScale(Vector3.zero, TimeData.FadeOutTime)
+                                .DOScaleX(0, TimeData.FadeOutTime)
                                 .SetEase(Ease.OutSine);
                         }
                         break;

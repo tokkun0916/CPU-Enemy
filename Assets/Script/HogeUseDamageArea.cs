@@ -6,7 +6,11 @@ public class HogeUseDamageArea : MonoBehaviour
     void Start()
     {
         DamageAreaData areaData = new DamageAreaData();
-        areaData.ShapeData = new DamageAreaCircleData();
+        areaData.ShapeData = new DamageAreaRectData
+        {
+            StartingPos = Vector3.zero,
+            Size = new Vector3(1, 1, 3)
+        };
         areaData.TimeData = new DamageAreaTimeData
         {
             FadeInTime = 1.0f,
@@ -18,8 +22,8 @@ public class HogeUseDamageArea : MonoBehaviour
         DamageAreaRunner damageAreaRunner = GetComponent<DamageAreaRunner>();
         damageAreaRunner.Initialize(areaData);
 
-        DamageAreaCircleView circleView = GetComponent<DamageAreaCircleView>();
-        circleView.Initialize(damageAreaRunner);
+        DamageAreaRectView rectData = GetComponent<DamageAreaRectView>();
+        rectData.Initialize(damageAreaRunner);
 
         UniTask executeTask = damageAreaRunner.Run();
     }

@@ -3,12 +3,20 @@ using System;
 using UniRx;
 using UnityEngine;
 
+/// <summary>
+/// ダメージエリアのライフサイクルを管理するクラス。
+/// FadeIn → Attack → FadeOut → Released の順に状態を遷移し、
+/// 各状態の変更を購読者へ通知する。
+/// </summary>
 public class DamageAreaRunner : MonoBehaviour
 {
     public DamageAreaData DamageAreaData { get; private set; }
 
     private readonly Subject<DamageAreaStateChanged> _stateChanged = new();
 
+    /// <summary>
+    /// ダメージエリアの状態変更通知
+    /// </summary>
     public IObservable<DamageAreaStateChanged> OnStateChanged => _stateChanged;
 
     public void Initialize(DamageAreaData data)
@@ -16,6 +24,9 @@ public class DamageAreaRunner : MonoBehaviour
         DamageAreaData = data;
     }
 
+    /// <summary>
+    /// ダメージエリアのライフサイクルを実行する
+    /// </summary>
     public async UniTask Run()
     {
         ChangeState(DamageAreaState.FadeIn);
