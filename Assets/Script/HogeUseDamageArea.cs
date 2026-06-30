@@ -13,7 +13,7 @@ public class HogeUseDamageArea : MonoBehaviour
         };
         areaData.TimeData = new DamageAreaTimeData
         {
-            FadeInTime = 1.0f,
+            SpawnTime = 1.0f,
             AttackTime = 2.0f,
             FadeOutTime = 1.5f
         };
@@ -22,7 +22,7 @@ public class HogeUseDamageArea : MonoBehaviour
         DamageAreaRunner damageAreaRunner = GetComponent<DamageAreaRunner>();
         damageAreaRunner.Initialize(areaData);
 
-        DamageAreaRectView rectData = GetComponent<DamageAreaRectView>();
+        DamageAreaRectScaleMotion rectData = GetComponent<DamageAreaRectScaleMotion>();
         rectData.Initialize(damageAreaRunner);
 
         UniTask executeTask = damageAreaRunner.Run();

@@ -3,7 +3,7 @@ using UnityEngine;
 using UniRx;
 
 
-public class DamageAreaCircleView : DamageAreaView
+public class DamageAreaCircleScaleMotion : DamageAreaScaleMotion
 {
     public override void Initialize(DamageAreaRunner areaRunner)
     {
@@ -15,11 +15,11 @@ public class DamageAreaCircleView : DamageAreaView
             {
                 switch (state._State)
                 {
-                    case DamageAreaState.FadeIn:
+                    case DamageAreaState.Spawn:
                         {
                             transform.localScale = Vector3.zero;
                             transform
-                                .DOScale(Vector3.one, TimeData.FadeInTime)
+                                .DOScale(Vector3.one, TimeData.SpawnTime)
                                 .SetEase(Ease.OutSine);
                         }
                         break;

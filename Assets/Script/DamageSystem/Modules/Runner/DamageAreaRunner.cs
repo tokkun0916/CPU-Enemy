@@ -5,7 +5,7 @@ using UnityEngine;
 
 /// <summary>
 /// ダメージエリアのライフサイクルを管理するクラス。
-/// FadeIn → Attack → FadeOut → Released の順に状態を遷移し、
+/// FadeIn → AttackWait → Attack → FadeOut → Released の順に状態を遷移し、
 /// 各状態の変更を購読者へ通知する。
 /// </summary>
 public class DamageAreaRunner : MonoBehaviour
@@ -29,8 +29,11 @@ public class DamageAreaRunner : MonoBehaviour
     /// </summary>
     public async UniTask Run()
     {
-        ChangeState(DamageAreaState.FadeIn);
-        await UniTask.Delay((int)(DamageAreaData.TimeData.FadeInTime * 1000));
+        ChangeState(DamageAreaState.Spawn);
+        await UniTask.Delay((int)(DamageAreaData.TimeData.SpawnTime * 1000));
+
+        ChangeState(DamageAreaState.AttackWait);
+        await UniTask.Delay((int)(DamageAreaData.TimeData.AttackWaitTime * 1000));
 
         ChangeState(DamageAreaState.Attack);
         await UniTask.Delay((int)(DamageAreaData.TimeData.AttackTime * 1000));

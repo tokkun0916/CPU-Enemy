@@ -2,7 +2,7 @@ using DG.Tweening;
 using UnityEngine;
 using UniRx;
 
-public class DamageAreaRectView : DamageAreaView
+public class DamageAreaRectScaleMotion : DamageAreaScaleMotion
 {
     private DamageAreaRectData _rectData;
     public override void Initialize(DamageAreaRunner areaRunner)
@@ -16,13 +16,13 @@ public class DamageAreaRectView : DamageAreaView
             {
                 switch (state._State)
                 {
-                    case DamageAreaState.FadeIn:
+                    case DamageAreaState.Spawn:
                         {
                             transform.localPosition = _rectData.StartingPos;
 
                             transform.localScale = new Vector3(0, _rectData.Size.y, _rectData.Size.z);
                             transform
-                                .DOScaleX(_rectData.Size.x, TimeData.FadeInTime)
+                                .DOScaleX(_rectData.Size.x, TimeData.SpawnTime)
                                 .SetEase(Ease.OutSine);
                         }
                         break;

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public abstract class DamageAreaView : MonoBehaviour
+public abstract class DamageAreaScaleMotion : MonoBehaviour
 {
     protected DamageAreaRunner Runner;
     protected DamageAreaTimeData TimeData;
