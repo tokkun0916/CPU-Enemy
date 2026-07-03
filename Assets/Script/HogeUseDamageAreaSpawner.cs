@@ -1,7 +1,7 @@
 using UnityEngine;
 using Cysharp.Threading.Tasks;
 
-public class HogeUseDamageArea : MonoBehaviour
+public class HogeUseDamageAreaSpawner : MonoBehaviour
 {
     void Start()
     {

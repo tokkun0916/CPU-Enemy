@@ -800,9 +800,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 4886741765133645021, guid: 327933f659e458c4a8aff7b1e40b2fe3, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1078098154}
-    - targetCorrespondingSourceObject: {fileID: 4886741765133645021, guid: 327933f659e458c4a8aff7b1e40b2fe3, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1078098153}
   m_SourcePrefab: {fileID: 100100000, guid: 327933f659e458c4a8aff7b1e40b2fe3, type: 3}
 --- !u!1 &992246732
 GameObject:
@@ -1035,18 +1032,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 4886741765133645021, guid: 327933f659e458c4a8aff7b1e40b2fe3, type: 3}
   m_PrefabInstance: {fileID: 853863204}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1078098153
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1078098152}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 45565a08d228a384984a1982e18fa019, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::HogeUseDamageArea
 --- !u!114 &1078098154
 MonoBehaviour:
   m_ObjectHideFlags: 0
