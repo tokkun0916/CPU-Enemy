@@ -7,17 +7,22 @@ using UniRx;
 /// </summary>
 public class HogeDamageAreaDestory : MonoBehaviour
 {
-    public void Initialize(DamageAreaRunner runner)
+    private DamageAreaRunner _runner;
+
+    private void Awake()
     {
-        runner.OnStateChanged
-            .Subscribe(state =>
-            {
-                switch (state._State)
-                {
-                    case DamageAreaState.Released:
-                        Destroy(runner.gameObject);
-                        break;
-                }
-            });
+        _runner = GetComponent<DamageAreaRunner>();
+
+        _runner.OnStateChanged
+            .Subscribe(OnStateChanged)
+            .AddTo(this);
+    }
+
+    private void OnStateChanged(DamageAreaStateChanged state)
+    {
+        if (state.State == DamageAreaState.Released)
+        {
+            Destroy(gameObject);
+        }
     }
 }

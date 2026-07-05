@@ -6,35 +6,44 @@ public class DamageAreaRectScaleMotion : DamageAreaScaleMotion
 {
     private DamageAreaRectData _rectData;
 
-    public override void Initialize(DamageAreaRunner areaRunner)
+    private void Awake()
     {
-        Runner = areaRunner;
-        TimeData = areaRunner.DamageAreaData.TimeData;
-        _rectData = (DamageAreaRectData)areaRunner.DamageAreaData.ShapeData;
+        Runner = GetComponent<DamageAreaRunner>();
 
         Runner.OnStateChanged
-            .Subscribe(state =>
-            {
-                switch (state._State)
-                {
-                    case DamageAreaState.Spawn:
-                        {
-                            transform.localPosition = _rectData.FrontCenterPos;
+            .Subscribe(OnStateChanged)
+            .AddTo(this);
+    }
 
-                            transform.localScale = new Vector3(0, _rectData.Size.y, _rectData.Size.z);
-                            transform
-                                .DOScaleX(_rectData.Size.x, TimeData.SpawnTime)
-                                .SetEase(Ease.OutSine);
-                        }
-                        break;
-                    case DamageAreaState.FadeOut:
-                        {
-                            transform
-                                .DOScaleX(0, TimeData.FadeOutTime)
-                                .SetEase(Ease.OutSine);
-                        }
-                        break;
+    public override void Initialize(DamageAreaData areaData)
+    {
+        TimeData = areaData.TimeData;
+        _rectData = (DamageAreaRectData)areaData.ShapeData;
+    }
+
+    private void OnStateChanged(DamageAreaStateChanged state)
+    {
+        switch (state.State)
+        {
+            case DamageAreaState.Spawn:
+                {
+                    transform.localPosition = _rectData.FrontCenterPos;
+                    transform.localScale = new Vector3(
+                        0,
+                        _rectData.Size.y,
+                        _rectData.Size.z);
+                    transform
+                        .DOScaleX(_rectData.Size.x, TimeData.SpawnTime)
+                        .SetEase(Ease.OutSine);
                 }
-            });
+                break;
+            case DamageAreaState.FadeOut:
+                {
+                    transform
+                        .DOScaleX(0, TimeData.FadeOutTime)
+                        .SetEase(Ease.OutSine);
+                }
+                break;
+        }
     }
 }

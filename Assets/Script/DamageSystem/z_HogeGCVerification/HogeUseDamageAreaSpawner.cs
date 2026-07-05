@@ -9,23 +9,19 @@ public class HogeUseDamageAreaSpawner : MonoBehaviour
 {
     [SerializeField] private DamageAreaSpwaner _damageAreaSpawner;
     [SerializeField] private int _spawnNumberPerSecond = 20;
-    private int _spawnsNumberPerFrame = 0;
-    private int _SpawnCount = 0;
-
-    void Start()
-    {
-        _spawnsNumberPerFrame = _spawnNumberPerSecond / Time.frameCount;
-    }
+    private float _spawnTimer;
 
     void Update()
     {
-        while(_SpawnCount < _spawnsNumberPerFrame)
+        _spawnTimer += Time.deltaTime * _spawnNumberPerSecond;
+
+        while (_spawnTimer >= 1f)
         {
             DamageAreaData data = RandomSetDamageAreaData();
             _damageAreaSpawner.Spawn(data);
-            _SpawnCount++;
+
+            _spawnTimer -= 1f;
         }
-        _SpawnCount = 0;
     }
 
     private DamageAreaData RandomSetDamageAreaData()

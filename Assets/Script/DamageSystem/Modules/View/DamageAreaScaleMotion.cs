@@ -5,5 +5,5 @@ public abstract class DamageAreaScaleMotion : MonoBehaviour
     protected DamageAreaRunner Runner;
     protected DamageAreaTimeData TimeData;
 
-    public abstract void Initialize(DamageAreaRunner area);
+    public abstract void Initialize(DamageAreaData area);
 }

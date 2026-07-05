@@ -29,9 +29,7 @@ public class DamageAreaFactory : MonoBehaviour
 
         // ダメージエリアの各機能を初期化＋ステイトを監視する
         DamageAreaScaleMotion motion = damageArea.GetComponent<DamageAreaScaleMotion>();
-        motion.Initialize(runner);
-        HogeDamageAreaDestory destory = damageArea.GetComponent<HogeDamageAreaDestory>();
-        destory.Initialize(runner);
+        motion.Initialize(areaData);
 
         _ = runner.Run();
     }
