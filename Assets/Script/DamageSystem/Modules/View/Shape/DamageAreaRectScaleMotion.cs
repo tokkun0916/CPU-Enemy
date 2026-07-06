@@ -46,4 +46,9 @@ public class DamageAreaRectScaleMotion : DamageAreaScaleMotion
                 break;
         }
     }
+
+    public override void ResetObject()
+    {
+        _rectData = null;
+    }
 }

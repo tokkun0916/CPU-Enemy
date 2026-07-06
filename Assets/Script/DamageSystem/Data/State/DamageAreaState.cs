@@ -6,5 +6,4 @@ public enum DamageAreaState
     AttackWait,
     Attack,
     FadeOut,
-    Released,
 }

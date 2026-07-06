@@ -44,4 +44,9 @@ public class DamageAreaCircleScaleMotion : DamageAreaScaleMotion
                 break;
         }
     }
+
+    public override void ResetObject()
+    {
+        _circleData = null;
+    }
 }

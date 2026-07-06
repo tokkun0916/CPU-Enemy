@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class DamageAreaCircleData : DamageAreaShapeBaseData
 {
+    public override DamageAreaShapeType ShapeType => DamageAreaShapeType.Circle;
+
     public Vector3 CenterPosition;
     public float Height;
     public float Radius;

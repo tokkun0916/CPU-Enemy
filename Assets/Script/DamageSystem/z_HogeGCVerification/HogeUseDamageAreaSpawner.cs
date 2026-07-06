@@ -15,14 +15,16 @@ public class HogeUseDamageAreaSpawner : MonoBehaviour
 
     private int _spawnType = 1;
 
+    private DamageAreaData _damageAreaData;
+
     void Update()
     {
         _spawnTimer += Time.deltaTime * _spawnNumberPerSecond;
 
         while (_spawnTimer >= 1f)
         {
-            DamageAreaData data = SetDamageAreaData();
-            _damageAreaSpawner.Spawn(data);
+            _damageAreaData = SetDamageAreaData();
+            _damageAreaSpawner.Spawn(_damageAreaData);
 
             _spawnTimer -= 1f;
 

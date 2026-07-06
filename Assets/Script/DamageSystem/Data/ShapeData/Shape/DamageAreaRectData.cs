@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class DamageAreaRectData : DamageAreaShapeBaseData
 {
+    public override DamageAreaShapeType ShapeType => DamageAreaShapeType.Rect;
+
     public Vector3 FrontCenterPos;
     public Vector3 Size;
 

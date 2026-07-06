@@ -1,5 +1,6 @@
 using Cysharp.Threading.Tasks;
 using System;
+using System.Threading;
 using UniRx;
 using UnityEngine;
 
@@ -14,10 +15,17 @@ public class DamageAreaRunner : MonoBehaviour
 
     private readonly Subject<DamageAreaStateChanged> _stateChanged = new();
 
+    private DamageAreaRoot _root;
+
     /// <summary>
     /// ダメージエリアの状態変更通知
     /// </summary>
     public IObservable<DamageAreaStateChanged> OnStateChanged => _stateChanged;
+
+    private void Awake()
+    {
+        _root = GetComponent<DamageAreaRoot>();
+    }
 
     public void Initialize(DamageAreaData data)
     {
@@ -41,11 +49,23 @@ public class DamageAreaRunner : MonoBehaviour
         ChangeState(DamageAreaState.FadeOut);
         await UniTask.Delay((int)(DamageAreaData.TimeData.FadeOutTime * 1000));
 
-        ChangeState(DamageAreaState.Released);
+        // ダメージエリアのライフサイクルが終了したことを通知する
+        _root.Release();
     }
 
     private void ChangeState(DamageAreaState state) 
     {
         _stateChanged.OnNext(new DamageAreaStateChanged(state, DamageAreaData));
+    }
+
+    public void ResetObject()
+    {
+        DamageAreaData = null;
+    }
+
+    private void OnDestroy()
+    {
+        _stateChanged.OnCompleted();
+        _stateChanged.Dispose();
     }
 }

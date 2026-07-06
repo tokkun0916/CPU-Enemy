@@ -20,9 +20,9 @@ public class HogeDamageAreaDestory : MonoBehaviour
 
     private void OnStateChanged(DamageAreaStateChanged state)
     {
-        if (state.State == DamageAreaState.Released)
+        /*if (state.State == DamageAreaState.Released)
         {
             Destroy(gameObject);
-        }
+        }*/
     }
 }

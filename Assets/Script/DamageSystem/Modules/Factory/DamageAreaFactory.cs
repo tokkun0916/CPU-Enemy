@@ -7,11 +7,12 @@ using UnityEngine;
 /// </summary>
 public class DamageAreaFactory : MonoBehaviour
 {
-    private HogeDamageAreaInstantiate _hogeDamageAreaInstantiate;
+    private DamageAreaPoolManager _poolManager;
+    private DamageAreaRoot damageAreaRoot;
 
-    public void Initialize(HogeDamageAreaInstantiate hogeDamageAreaInstantiate)
+    public void Initialize(DamageAreaPoolManager pool)
     {
-        _hogeDamageAreaInstantiate = hogeDamageAreaInstantiate;
+        _poolManager = pool;
     }
 
     /// <summary>
@@ -20,10 +21,9 @@ public class DamageAreaFactory : MonoBehaviour
     /// <param name="areaData"></param>
     public void Create(DamageAreaData areaData)
     {
-        // Instantiateしているが、将来的にはオブジェクトプールから取得する
-        DamageAreaRoot damageAreaRoot = _hogeDamageAreaInstantiate.Instantiate(areaData.ShapeData);
+        damageAreaRoot = _poolManager.Get(areaData.ShapeData);
 
-        // ダメージエリアの各機能を初期化して実行する
+        // 各機能を初期化して実行する
         damageAreaRoot.Initialize(areaData);
         damageAreaRoot.Run();
     }
