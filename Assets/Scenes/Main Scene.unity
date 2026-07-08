@@ -1536,7 +1536,7 @@ MonoBehaviour:
   _poolParent: {fileID: 1164568857}
   _prefabRect: {fileID: 6837151858872651741, guid: 327933f659e458c4a8aff7b1e40b2fe3, type: 3}
   _prefabCircle: {fileID: 6803497061121270270, guid: 480dccadbb8fb064cb97968b7989ca3f, type: 3}
-  _poolSize: 6000
+  _poolSize: 1300
   _spawner: {fileID: 366648506}
   _factory: {fileID: 975470260}
 --- !u!1 &2096946774
