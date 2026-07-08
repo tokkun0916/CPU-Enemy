@@ -56,6 +56,7 @@ public class HogeUseDamageAreaSpawner : MonoBehaviour
         {
             _damageAreaData = SetDamageAreaData();
             _damageAreaSpawner.Spawn(_damageAreaData);
+            GCPerformanceRecorder.Instance.AddSpawn();
 
             _spawnTimer -= 1f;
 
@@ -69,6 +70,8 @@ public class HogeUseDamageAreaSpawner : MonoBehaviour
 
     private void EndTest()
     {
+        GCPerformanceRecorder.Instance.PrintResult();
+
 #if UNITY_EDITOR
         UnityEditor.EditorApplication.isPlaying = false;
 #else

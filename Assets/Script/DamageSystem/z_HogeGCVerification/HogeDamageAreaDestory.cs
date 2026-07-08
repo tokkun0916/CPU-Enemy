@@ -22,6 +22,7 @@ public class HogeDamageAreaDestory : MonoBehaviour
     {
         if (state.State == DamageAreaState.Released)
         {
+            GCPerformanceRecorder.Instance.AddDestroy();
             Destroy(gameObject);
         }
     }
