@@ -63,6 +63,8 @@ public class DamageAreaPool
         root.gameObject.SetActive(false);
 
         _pool.Enqueue(root);
+
+        GCPerformanceRecorder.Instance.AddDestroy();
     }
 
     /// <summary>
