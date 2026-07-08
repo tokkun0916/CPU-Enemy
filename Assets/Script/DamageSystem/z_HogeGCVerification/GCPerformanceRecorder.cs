@@ -1,4 +1,6 @@
 using System;
+using System.IO;
+using System.Text;
 using Unity.Profiling;
 using UnityEngine;
 
@@ -106,6 +108,38 @@ GC回数        : {gcCount}
 
 実行時間      : {elapsedTime:F2} sec
 ============================");
+
+        SaveCsv(avgFPS);
+    }
+
+    private void SaveCsv(float avgFPS)
+    {
+        string path = Path.Combine(Application.dataPath, "../GCPerformance.csv");
+
+        bool exists = File.Exists(path);
+
+        StringBuilder sb = new StringBuilder();
+
+        // 初回のみヘッダーを書く
+        if (!exists)
+        {
+            sb.AppendLine(
+                "Date,SpawnCount,DestroyCount,GCAlloc(MB),GCCount,MaxFrameTime(ms),AverageFPS,ElapsedTime(sec)");
+        }
+
+        sb.AppendLine(
+            $"{System.DateTime.Now:yyyy/MM/dd HH:mm:ss}," +
+            $"{spawnCount}," +
+            $"{destroyCount}," +
+            $"{TotalGCAlloc / 1024f / 1024f:F2}," +
+            $"{gcCount}," +
+            $"{maxFrameTime * 1000f:F2}," +
+            $"{avgFPS:F1}," +
+            $"{elapsedTime:F2}");
+
+        File.AppendAllText(path, sb.ToString(), Encoding.UTF8);
+
+        Debug.Log($"CSV保存完了\n{path}");
     }
 
     void OnDisable()
