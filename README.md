@@ -25,8 +25,8 @@
 ## ObjectPoolのGC検証結果
 
 <p>
-  <img src="images/compare-gcalloc.png" width="400">
-  <img src="images/compare-gcalloc-60m-ver.png" width="400">
+  <img src="images\compare-gcalloc.png" width="400">
+  <img src="images\compare-gcalloc-60m-ver.png" width="400">
 </p>
 
 ## 制作背景と目標
