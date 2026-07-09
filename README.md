@@ -24,6 +24,7 @@
 
 ## ObjectPoolのGC検証結果
 
+### GC.Alloc
 <p>
   <img src="images\compare-gcalloc.png" width="400">
   <img src="images\compare-gcalloc-600k-ver.png" width="400">
@@ -32,8 +33,9 @@
 ObjectPoolを使用した時の方がInstantiate,Destoryよりも
 GC.Allocを約35~54%削減することができた
 
+### AvarageFPS
 <p>
-  <img src="images\compare-avarage-fps" width="400">
+  <img src="images\compare-avarage-fps.png" width="400">
   <img src="images\compare-avarage-fps-600k-ver.png" width="400">
 </p>
 
