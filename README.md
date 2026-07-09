@@ -15,11 +15,19 @@
 
 # 実装した機能一覧
 - ダメージエリア
+- ObjectPoolのGC検証
 
 ## ダメージエリアの工夫した点
 ・Spawner/Factory/Runnerのライフサイクル
 ・Runnerの状態をUniTaskで進め、UniRxで状態を購読し各機能へ通知するロジック
 ・GC削減
+
+## ObjectPoolのGC検証結果
+
+<p>
+  <img src="images/compare-gcalloc.png" width="400">
+  <img src="images/compare-gcalloc-60m-ver.png" width="400">
+</p>
 
 ## 制作背景と目標
 得意な事を伸ばそうと考え思いついたのがCPU
